@@ -26,10 +26,19 @@ export const Container = styled.div`
             display: none;
         }
 
-        input {
+        form span {
+            width: 270px;
+            margin: 0 auto -5px;
+            padding-left: 7px;
+            text-align: left;
+            color: red;
+            font-size: 12px;
+        }
+
+        input, select, textarea {
             width: 270px;
             height: 50px;
-            margin: 1vh auto;
+            margin: 2vh auto;
             padding-left: 12px;
             color: var(--blue);
             background-color: transparent;
@@ -42,7 +51,15 @@ export const Container = styled.div`
             }
         }
 
-        button{
+        select {
+            margin-top: -2vh;
+        }
+
+        textarea {
+            padding-top: 12px;
+        }
+
+        button {
             width: 270px;
             height: 50px;
             margin: 5vh auto;
@@ -64,6 +81,28 @@ export const Container = styled.div`
                 color: var(--orange);
                 padding: 4px;
             }
+        }
+
+        .BtnNext, .BtnBack {
+            height: 25px;
+            font-family: 'Alegreya Sans SC';
+            font-size: 18px;
+            padding-right: 8px;
+            color: var(--blue);
+            background-color: transparent;
+        }
+
+        .BtnNext {
+            text-align: right;
+        }
+
+        .BtnBack {
+            text-align: left;
+            margin-top: 2vh;
+        }
+
+        svg {
+            transform: translateY(5px);
         }
     }
 
