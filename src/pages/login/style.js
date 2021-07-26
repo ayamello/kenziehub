@@ -18,28 +18,8 @@ export const Container = styled.div`
             margin: 7vh 0 4vh 0;
         }
 
-        input, span, button {
+        span {
             display: block;
-        }
-
-        label {
-            display: none;
-        }
-
-        input {
-            width: 270px;
-            height: 50px;
-            margin: 1vh auto;
-            padding-left: 12px;
-            color: var(--blue);
-            background-color: transparent;
-            border: 2px solid var(--blue);
-            border-radius: 15px;
-            font-size: 16px;
-
-            &::placeholder {
-                color: rgba(0,20,41,.5);
-            }
         }
 
         button{

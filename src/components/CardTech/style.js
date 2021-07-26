@@ -5,7 +5,7 @@ export const Container = styled.div`
     width: 100%;
     max-width: 256px;
     padding: 0 10px;
-    margin: 2vh auto;
+    margin: 2vh 0.2vw;
 
     h5 {
         text-align: center;

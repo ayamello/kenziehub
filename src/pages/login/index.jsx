@@ -1,5 +1,6 @@
 import { Container } from './style';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 import { Link, useHistory } from 'react-router-dom';
 import LogoKH from '../../assets/logo.png';
 import ImgCover1 from '../../assets/login1.png';
@@ -46,23 +47,21 @@ function Login() {
                 <h3>Login</h3>
 
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div>
-                        <label htmlFor="email">Email</label>
-                        <input type="email" 
-                               id="email"
-                               placeholder="Email" 
-                               {...register("email")} 
-                        />
-                    </div>
+                    <Input label="Email"
+                        type="email" 
+                        id="email"
+                        name="email"
+                        placeholder="Email" 
+                        register={register} 
+                    />
 
-                    <div>
-                        <label htmlFor="password">Senha</label>
-                        <input type="password" 
-                               id="password"
-                               placeholder="Senha" 
-                               {...register("password")} 
-                        />
-                    </div>
+                    <Input label="Senha"
+                        type="password" 
+                        id="password"
+                        name="password"
+                        placeholder="Senha" 
+                        register={register} 
+                    />
 
                     <Button type="submit">Entrar</Button>
                 </form>

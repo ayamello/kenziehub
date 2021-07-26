@@ -13,9 +13,9 @@ import CardTech from '../../components/CardTech';
 function Profile() {
     const { id } = useParams();
     const history = useHistory();
-    const [dataUser, setDataUser] = useState({});
-    const [viewModalAdd, setViewModalAdd] = useState(false);
-    const [techs, setTechs] = useState([]);
+    const [dataUser, setDataUser] = useState({}); // armazenar dados do usuário
+    const [viewModalAdd, setViewModalAdd] = useState(false); // modal de adicionar tech
+    const [techs, setTechs] = useState([]); // armazenar techs do usuário
 
     const [token] = useState(
         JSON.parse(localStorage.getItem("@Kenziehub:token")) || ""
@@ -48,12 +48,12 @@ function Profile() {
                 Authorization: `Bearer ${token}`,
             },
         })
-        .then((_) => {
-            setTechs(techs.filter(tech => tech.id !== id));
-        })
-        .catch(err =>{
-            console.log(err);
-        })
+            .then((_) => {
+                setTechs(techs.filter(tech => tech.id !== id));
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     const onSubmit = (data) => {
@@ -76,6 +76,7 @@ function Profile() {
             })
     }
 
+    // armazenar dados do usuário
     useEffect(() => {
         api.get(`/users/${id}`, {
         })
@@ -84,11 +85,9 @@ function Profile() {
                 setDataUser(response.data);
             })
             .catch(err => {
-               // console.log(err);
+                console.log(err);
             })
-    }, [techs]);
-
-
+    }, [techs, id]);
 
     return (
         <Container>
@@ -127,7 +126,7 @@ function Profile() {
 
             <Content>
                 <div className="HeaderProfile">
-                    <h3>{ dataUser.name }</h3>
+                    <h3>{dataUser.name}</h3>
                     <span>{dataUser.bio}</span>
                 </div>
 
@@ -138,11 +137,12 @@ function Profile() {
                     </div>
 
                     <div className="ListTechs">
-                        {techs.map(tech => 
-                            <CardTech tech={tech.title}
-                                      status={tech.status}
-                                      id={tech.id} 
-                                      eventDelete={handleDeleteTech}
+                        {techs.map(tech =>
+                            <CardTech key={tech.id}
+                                tech={tech.title}
+                                status={tech.status}
+                                id={tech.id}
+                                eventDelete={handleDeleteTech}
                             />
                         )}
                     </div>

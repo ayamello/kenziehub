@@ -35,7 +35,7 @@ export const Container = styled.div`
             font-size: 12px;
         }
 
-        input, select, textarea {
+        select, textarea {
             width: 270px;
             height: 50px;
             margin: 2vh auto;
@@ -63,6 +63,32 @@ export const Container = styled.div`
             margin: 5vh auto;
         }
 
+        .BtnNext, .BtnBack {
+            height: 25px;
+            width: 80%;
+            max-width: 270px;
+            font-family: 'Alegreya Sans SC';
+            font-size: 18px;
+            padding-right: 8px;
+            border: none;
+            color: var(--blue);
+            background-color: transparent;
+        }
+
+        .BtnNext {
+            text-align: right;
+            margin: 4vh auto;
+        }
+
+        .BtnBack {
+            text-align: left;
+            margin: 1vh auto;
+        }
+
+            svg {
+                transform: translateY(5px);
+            }
+        
         span {
             display: block;
             color: var(--blue);
@@ -74,29 +100,6 @@ export const Container = styled.div`
                 color: var(--orange);
                 padding: 4px;
             }
-        }
-
-        .BtnNext, .BtnBack {
-            height: 25px;
-            font-family: 'Alegreya Sans SC';
-            font-size: 18px;
-            padding-right: 8px;
-            border: none;
-            color: var(--blue);
-            background-color: transparent;
-        }
-
-        .BtnNext {
-            text-align: right;
-        }
-
-        .BtnBack {
-            text-align: left;
-            margin-top: 2vh;
-        }
-
-        svg {
-            transform: translateY(5px);
         }
     }
 

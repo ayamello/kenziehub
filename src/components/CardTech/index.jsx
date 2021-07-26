@@ -3,7 +3,7 @@ import { BsTrashFill } from 'react-icons/bs';
 
 function CardTech({ tech, status, id, eventDelete }) {
     return(
-        <Container key={id}>
+        <Container>
             <div>
                 <h5>{tech}</h5>
                 <hr />

@@ -1,5 +1,6 @@
 import { Container } from './style';
 import Button from '../../components/Button';
+import Input from '../../components/Input';
 import { Link, useHistory } from 'react-router-dom';
 import LogoKH from '../../assets/logo.png';
 import ImgCover1 from '../../assets/login1.png';
@@ -63,42 +64,41 @@ function Signup() {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     {countForm === 1 &&
                         <>
-                            <div>
-                                <span>{errors.name?.message}</span>
-                                <label htmlFor="name">Nome</label>
-                                <input type="text" 
-                                       id="name"
-                                       placeholder="Nome*"
-                                       {...register("name")} 
-                                />
-                            </div>
-                            <div>
-                                <span>{errors.email?.message}</span>
-                                <label htmlFor="email">Email</label>
-                                <input type="text" 
-                                       id="email" 
-                                       placeholder="Email*" 
-                                       {...register("email")}
-                                />
-                            </div>
-                            <div>
-                                <span>{errors.password?.message}</span>
-                                <label htmlFor="password">Senha</label>
-                                <input type="password" 
-                                       id="password"
-                                       placeholder="Senha*"
-                                       {...register("password")} 
-                                />
-                            </div>
-                            <div>
-                                <span>{errors.confirmPassword?.message}</span>
-                                <label htmlFor="confirmPassword">Confirmar senha</label>
-                                <input type="password" 
-                                       id="confirmPassword"
-                                       placeholder="Confirmar senha*"
-                                       {...register("confirmPassword")} 
-                                />
-                            </div>
+                            <Input label="Nome"
+                                type="text" 
+                                id="name"
+                                name="name"
+                                placeholder="Nome" 
+                                register={register} 
+                                error={errors.name?.message}
+                            />
+
+                            <Input label="Email"
+                                type="email" 
+                                id="email"
+                                name="email"
+                                placeholder="Email" 
+                                register={register} 
+                                error={errors.email?.message}
+                            />
+
+                            <Input label="Senha"
+                                type="password" 
+                                id="password"
+                                name="password"
+                                placeholder="Senha" 
+                                register={register} 
+                                error={errors.password?.message}
+                            />
+                            
+                            <Input label="Senha"
+                                type="password" 
+                                id="confirmPassword"
+                                name="confirmPassword"
+                                placeholder="Senha" 
+                                register={register} 
+                                error={errors.confirmPassword?.message}
+                            />
 
                             <button className="BtnNext"
                                 onClick={() => setCountForm(countForm + 1)}>
@@ -118,16 +118,15 @@ function Signup() {
                                     <option value="q4">Q4</option>
                                 </select>
                             </div>
-                            
-                            <div>
-                                <span>{errors.contact?.message}</span>
-                                <label htmlFor="contact">LinkedIn</label>
-                                <textarea type="text" 
-                                          id="contact"
-                                          placeholder="Contato*"
-                                          {...register("contact")} 
-                                />
-                            </div>
+
+                            <Input label="Contato"
+                                type="text" 
+                                id="contact"
+                                name="contact"
+                                placeholder="Contato" 
+                                register={register} 
+                                error={errors.contact?.message}
+                            />
 
                             <div>
                                 <span>{errors.bio?.message}</span>
