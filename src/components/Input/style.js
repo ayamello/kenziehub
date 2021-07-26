@@ -9,7 +9,7 @@ export const Container = styled.div`
         display: block;
         width: 270px;
         height: 50px;
-        margin: 1vh auto;
+        margin: 2vh auto;
         padding-left: 12px;
         color: var(--blue);
         background-color: transparent;

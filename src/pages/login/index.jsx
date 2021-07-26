@@ -56,6 +56,7 @@ function Login() {
                     />
 
                     <Input label="Senha"
+                        className="password"
                         type="password" 
                         id="password"
                         name="password"

@@ -17,9 +17,9 @@ export const Container = styled.div`
             width: 110px;
             margin: 7vh 0 4vh 0;
         }
-
-        span {
-            display: block;
+        
+        .password{
+            margin-top: -5vh;
         }
 
         button{
