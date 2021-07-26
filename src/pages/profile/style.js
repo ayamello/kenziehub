@@ -5,37 +5,19 @@ export const Container = styled.div`
     min-height: 100vh;
     padding-bottom: 20px;
 
-    .ModalAdd {
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: rgba(0,0,0,.5);
-        z-index: 1;
+    .BtnClose {
+        text-align: right;
 
-        .ModalContent {
-            width: 80%;
-            max-width: 290px;
-            height: 45vh;
-            border: 1px solid var(--blue);
-            background-color: var(--whitesmoke);
-        }
+        button {
+        border: none;
+        background-color: transparent;
 
-        .BtnClose {
-            text-align: right;
-
-            button {
-            border: none;
-            background-color: transparent;
-
-                svg {
-                    font-size: 30px;
+            svg {
+                font-size: 30px;
                     padding: 5px;
                 }
-            }
         }
+    }
         
         form {
             padding: 2vh 0 5vh;
@@ -66,7 +48,6 @@ export const Container = styled.div`
                 border: none;
             }
         }
-    }
 
     header {
         padding: 1.5vh 3vw;
@@ -139,6 +120,12 @@ export const Content = styled.div`
                 font-weight: bold;
             }
         }
+        .ListTechs {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     @media (min-width: 768px) {
@@ -163,10 +150,9 @@ export const Content = styled.div`
             }
 
             .ListTechs {
-                width: 100%;
-                display: flex;
                 flex-wrap: wrap;
-                justify-content: flex-start;
+                flex-direction: row;
+                justify-content: center;
             }
         }
     }

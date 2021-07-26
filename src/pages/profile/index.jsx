@@ -1,4 +1,6 @@
 import { Container, Content } from './style';
+import CardTech from '../../components/CardTech';
+import Modal from '../../components/Modal';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { GrFormClose } from 'react-icons/gr';
 import { useHistory, useParams } from 'react-router-dom';
@@ -8,14 +10,16 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import { useEffect } from 'react';
-import CardTech from '../../components/CardTech';
 
 function Profile() {
     const { id } = useParams();
     const history = useHistory();
     const [dataUser, setDataUser] = useState({}); // armazenar dados do usuário
     const [viewModalAdd, setViewModalAdd] = useState(false); // modal de adicionar tech
+    const [viewModalUpdate, setViewModalUpdate] = useState(false); // modal de atualizar tech
     const [techs, setTechs] = useState([]); // armazenar techs do usuário
+    const [idTech, setIdTech] = useState("");
+    const [textInput, setTextInput] = useState("");
 
     const [token] = useState(
         JSON.parse(localStorage.getItem("@Kenziehub:token")) || ""
@@ -25,7 +29,7 @@ function Profile() {
         title: yup.string().required("Campo obrigatório"),
     });
 
-    const { register, handleSubmit } = useForm({
+    const { register, handleSubmit, reset } = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -40,6 +44,7 @@ function Profile() {
 
     const handleCloseModal = () => {
         setViewModalAdd(false);
+        setViewModalUpdate(false);
     }
 
     const handleDeleteTech = (id) => {
@@ -56,8 +61,34 @@ function Profile() {
             })
     }
 
-    const onSubmit = (data) => {
+    const handleOpenUpdateModal = (id) => {
+        setViewModalUpdate(true);
+        setIdTech(id);
+    }
+
+    const handleUpdateTech = (textInput) => {
+        setViewModalUpdate(false);
+        reset();
+
+        api.put(`/users/techs/${idTech}`, {
+            status: textInput,
+        },
+        {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        })
+            .then((response) => {
+                console.log(response)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    const handleAddTech = (data) => {
         setViewModalAdd(false);
+        reset();
 
         api.post("/users/techs", {
             title: data.title,
@@ -92,30 +123,51 @@ function Profile() {
     return (
         <Container>
             {viewModalAdd &&
-                <div className="ModalAdd">
-                    <div className="ModalContent">
-                        <div className="BtnClose">
-                            <button onClick={handleCloseModal}><GrFormClose /></button>
-                        </div>
-
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <span>Nova tecnologia</span>
-                            <label htmlFor="title">Tecnologia</label>
-                            <input type="text"
-                                placeholder="Tecnologia"
-                                {...register("title")}
-                            />
-
-                            <label htmlFor="status">Status</label>
-                            <select id="status" {...register("status")}>
-                                <option value="Iniciante">Iniciante</option>
-                                <option value="Mediano">Mediano</option>
-                                <option value="Avançado">Avançado</option>
-                            </select>
-                            <button type="submit">Adicionar</button>
-                        </form>
+                <Modal>
+                    <div className="BtnClose">
+                        <button onClick={handleCloseModal}><GrFormClose /></button>
                     </div>
-                </div>
+
+                    <form onSubmit={handleSubmit(handleAddTech)}>
+                        <span>Nova tecnologia</span>
+                        <label htmlFor="title">Tecnologia</label>
+                        <input type="text"
+                            placeholder="Tecnologia"
+                            {...register("title")}
+                        />
+
+                        <label htmlFor="status">Status</label>
+                        <select id="status" {...register("status")}>
+                            <option value="">Nível</option>
+                            <option value="Iniciante">Iniciante</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Avançado">Avançado</option>
+                        </select>
+                        <button type="submit">Adicionar</button>
+                    </form>
+                </Modal>
+            }
+
+            {viewModalUpdate &&
+                <Modal>
+                    <div className="BtnClose">
+                        <button onClick={handleCloseModal}><GrFormClose /></button>
+                    </div>
+
+                    <form>
+                        <span>Atualizar status</span>
+
+                        <label htmlFor="status">Status</label>
+                        <select id="status" onChange={e => setTextInput(e.target.value)}>
+                            <option value="">Nível</option>
+                            <option value="Iniciante">Iniciante</option>
+                            <option value="Mediano">Mediano</option>
+                            <option value="Avançado">Avançado</option>
+                        </select>
+
+                        <button type="submit" onClick={() => handleUpdateTech(textInput)}>Atualizar</button>
+                    </form>
+                </Modal>                
             }
 
             <header>
@@ -143,6 +195,7 @@ function Profile() {
                                 status={tech.status}
                                 id={tech.id}
                                 eventDelete={handleDeleteTech}
+                                eventUpdate={handleOpenUpdateModal}
                             />
                         )}
                     </div>

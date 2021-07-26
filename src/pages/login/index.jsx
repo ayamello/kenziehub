@@ -54,7 +54,6 @@ function Login() {
                         placeholder="Email" 
                         register={register} 
                     />
-
                     <Input label="Senha"
                         className="password"
                         type="password" 
@@ -63,7 +62,6 @@ function Login() {
                         placeholder="Senha" 
                         register={register} 
                     />
-
                     <Button type="submit">Entrar</Button>
                 </form>
                 <span>Não tem conta? <Link to="/cadastro">Cadastre-se</Link></span>
