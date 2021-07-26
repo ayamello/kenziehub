@@ -41,13 +41,18 @@ function Profile({ setCurrentUser, currentUser }) {
         setViewModalAdd(false);
     }
 
-    const handleDeleteTech = ({ tech_id }) => {
-        api.delete(`/users/techs/${tech_id}`, {
-            Authorization: `Bearer ${token}`,
+    const handleDeleteTech = (id) => {
+        api.delete(`/users/techs/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
         })
-            .then((_) => {
-                setTechs()
-            })
+        .then((_) => {
+            setTechs(techs.filter(tech => tech.id !== id));
+        })
+        .catch(err =>{
+            console.log(err);
+        })
     }
 
     const onSubmit = (data) => {
@@ -75,12 +80,11 @@ function Profile({ setCurrentUser, currentUser }) {
         })
             .then(response => {
                 setTechs(response.data.techs);
-                console.log(response.data.techs);
             })
             .catch(err => {
                 console.log(err);
             })
-    }, []);
+    }, [techs]);
 
     return (
         <Container>
@@ -140,7 +144,7 @@ function Profile({ setCurrentUser, currentUser }) {
 
                                 <div className="Btns">
                                     <button className="BtnUpdate">Atualizar</button>
-                                    <button className="BtnDelete"><BsTrashFill /></button>
+                                    <button className="BtnDelete" onClick={() => handleDeleteTech(tech.id)}><BsTrashFill /></button>
                                 </div>
                             </div>
                         )
