@@ -9,11 +9,9 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import { useState } from 'react';
 import { BsArrowRight, BsArrowLeft } from "react-icons/bs";
-import { useEffect } from 'react';
 
 function Signup() {
     const [countForm, setCountForm] = useState(1);
-    const [isErrored, setIsErrored] = useState(false);
 
     const history = useHistory();
 

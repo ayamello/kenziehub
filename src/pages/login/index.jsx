@@ -28,7 +28,7 @@ function Login() {
         })
         .then(response => {
             const { token } = response.data;
-            localStorage.setItem("Kenziehub:token", JSON.stringify(token));
+            localStorage.setItem("@Kenziehub:token", JSON.stringify(token));
 
             return history.push("/profile");
         })

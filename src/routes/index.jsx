@@ -2,6 +2,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from '../pages/home';
 import Login from '../pages/login';
 import Signup from '../pages/signup';
+import Profile from '../pages/profile';
 
 function Routes() {
     return(
@@ -14,6 +15,9 @@ function Routes() {
             </Route>
             <Route path="/cadastro">
                 <Signup />
+            </Route>
+            <Route path="/profile">
+                <Profile />
             </Route>
         </Switch>
     )
