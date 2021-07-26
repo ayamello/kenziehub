@@ -18,7 +18,7 @@ export const Container = styled.div`
             margin: 7vh 0 4vh 0;
         }
 
-        span, button, a {
+        span, a {
             display: block;
         }
 
@@ -30,21 +30,7 @@ export const Container = styled.div`
             margin-bottom: 7vh;
         }
 
-        button{
-            width: 270px;
-            height: 50px;
-            margin: 0 auto;
-            border: none;
-            border-radius: 15px;
-            font-size: 20px;
-            color: var(--white);
-            background-color: var(--blue);
-        }
-
         button + button {
-            color: var(--blue);
-            background-color: transparent;
-            border: 2px solid var(--blue);
             margin-top: 3vh;
         }
 

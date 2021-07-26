@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
         font-family: 'Alegreya Sans';
-        background-color: var(---whitesmoke);
+        background-color: var(--whitesmoke);
     }
 
     h1 {

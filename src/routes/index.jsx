@@ -3,7 +3,6 @@ import Home from '../pages/home';
 import Login from '../pages/login';
 import Signup from '../pages/signup';
 import Profile from '../pages/profile';
-import { useState } from 'react';
 
 function Routes() {
     return(

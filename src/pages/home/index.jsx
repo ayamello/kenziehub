@@ -4,6 +4,7 @@ import LogoKH from '../../assets/logo.png';
 import ImgCover1 from '../../assets/home1.png';
 import ImgCover2 from '../../assets/home2.png';
 import { BsArrowRight } from "react-icons/bs";
+import Button from '../../components/button';
 
 function Home() {
     const history = useHistory();
@@ -27,8 +28,8 @@ function Home() {
                 <img src={LogoKH} alt="Logo KenzieHub" />
                 <span>Portfólio dos alunos da Kenzie Academy Brasil</span>
 
-                <button onClick={() => handleButton("/login")}>Login</button>
-                <button onClick={() => handleButton("/cadastro")}>Cadastro</button>
+                <Button onClick={() => handleButton("/login")}>Login</Button>
+                <Button whiteSchema={true} onClick={() => handleButton("/cadastro")}>Cadastro</Button>
                 <Link to="/">Ver Portfólios <BsArrowRight /></Link>
             </div>
         </Container>

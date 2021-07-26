@@ -1,4 +1,5 @@
 import { Container } from './style';
+import Button from '../../components/button';
 import { Link, useHistory } from 'react-router-dom';
 import LogoKH from '../../assets/logo.png';
 import ImgCover1 from '../../assets/login1.png';
@@ -143,7 +144,7 @@ function Signup() {
                                 <BsArrowLeft /> Anterior 
                             </button>
 
-                            <button type="submit">Finalizar cadastro</button>
+                            <Button type="submit">Finalizar cadastro</Button>
                         </>
                     }
                     

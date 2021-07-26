@@ -43,14 +43,8 @@ export const Container = styled.div`
         }
 
         button{
-            width: 270px;
-            height: 50px;
             margin: 5vh auto;
-            border: none;
-            border-radius: 15px;
             font-size: 20px;
-            color: var(--white);
-            background-color: var(--blue);
         }
 
         span {

@@ -1,4 +1,5 @@
 import { Container } from './style';
+import Button from '../../components/button';
 import { Link, useHistory } from 'react-router-dom';
 import LogoKH from '../../assets/logo.png';
 import ImgCover1 from '../../assets/login1.png';
@@ -63,7 +64,7 @@ function Login() {
                         />
                     </div>
 
-                    <button type="submit">Entrar</button>
+                    <Button type="submit">Entrar</Button>
                 </form>
                 <span>Não tem conta? <Link to="/cadastro">Cadastre-se</Link></span>
             </div>
