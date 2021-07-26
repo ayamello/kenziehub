@@ -2,7 +2,7 @@ import { Container, Content } from './style';
 import { BsTrashFill } from 'react-icons/bs';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { GrFormClose } from 'react-icons/gr';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup'
@@ -10,7 +10,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import { useEffect } from 'react';
 
-function Profile() {
+function Profile({ setCurrentUser, currentUser }) {
+    const { id } = useParams();
     const history = useHistory();
     const [viewModalAdd, setViewModalAdd] = useState(false);
     const [techs, setTechs] = useState([]);
@@ -28,7 +29,8 @@ function Profile() {
     });
 
     const handleLogout = () => {
-       return history.push("/")
+        localStorage.clear();
+        return history.push("/");
     }
 
     const handleModal = () => {
@@ -39,60 +41,69 @@ function Profile() {
         setViewModalAdd(false);
     }
 
+    const handleDeleteTech = ({ tech_id }) => {
+        api.delete(`/users/techs/${tech_id}`, {
+            Authorization: `Bearer ${token}`,
+        })
+            .then((_) => {
+                setTechs()
+            })
+    }
+
     const onSubmit = (data) => {
         setViewModalAdd(false);
 
         api.post("/users/techs", {
             title: data.title,
             status: data.status,
-
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
-        })
-        .then(response => {
-            console.log(response);
-        })
-        .catch(err => {
-            console.log(err);
-        })
+        },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+            })
+            .then(response => {
+                setTechs([...techs, response]);
+            })
+            .catch(err => {
+                console.log(err);
+            })
     }
 
     useEffect(() => {
-        api.get("/users", {
-            
+        api.get(`/users/${id}`, {
         })
-        .then(response => {
-            setTechs(response.techs);
-            console.log(response);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }, [])
+            .then(response => {
+                setTechs(response.data.techs);
+                console.log(response.data.techs);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, []);
 
-    return(
+    return (
         <Container>
-            {viewModalAdd && 
+            {viewModalAdd &&
                 <div className="ModalAdd">
                     <div className="ModalContent">
                         <div className="BtnClose">
                             <button onClick={handleCloseModal}><GrFormClose /></button>
                         </div>
-                    
+
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <span>Nova tecnologia</span>
                             <label htmlFor="title">Tecnologia</label>
-                            <input type="text" 
-                                   placeholder="Tecnologia"
-                                   {...register("title")}
+                            <input type="text"
+                                placeholder="Tecnologia"
+                                {...register("title")}
                             />
 
                             <label htmlFor="status">Status</label>
                             <select id="status" {...register("status")}>
-                                <option value="beginner">Iniciante</option>
-                                <option value="median">Mediano</option>
-                                <option value="advanced">Avançado</option>
+                                <option value="Iniciante">Iniciante</option>
+                                <option value="Mediano">Mediano</option>
+                                <option value="Avançado">Avançado</option>
                             </select>
                             <button type="submit">Adicionar</button>
                         </form>
@@ -119,20 +130,26 @@ function Profile() {
                     </div>
 
                     <div className="ListTechs">
-                        <div className="CardTech">
-                            <div>
-                                <h5>React</h5>
-                                <hr />
-                                <p><span>Nível: </span>Iniciante</p>
+                        {techs.map(tech => 
+                            <div key={tech.id} className="CardTech">
+                                <div>
+                                    <h5>{tech.title}</h5>
+                                    <hr />
+                                    <p><span>Nível: </span>{tech.status}</p>
+                                </div>
+
+                                <div className="Btns">
+                                    <button className="BtnUpdate">Atualizar</button>
+                                    <button className="BtnDelete"><BsTrashFill /></button>
+                                </div>
                             </div>
-                        
-                            <div className="Btns">
-                                <button className="BtnUpdate">Atualizar</button>
-                                <button className="BtnDelete"><BsTrashFill /></button>
-                            </div>
-                        </div>
+                        )
+
+                        }
+
+
                     </div>
-                    
+
                 </div>
             </Content>
         </Container>
