@@ -46,7 +46,7 @@ function Signup() {
         .then(response => {
             console.log(response.data);
 
-            return history.push("/user-profile");
+            return history.push(`/login`);
         })
         .catch(err => {
             console.log(err);            
