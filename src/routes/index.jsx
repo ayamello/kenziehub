@@ -6,21 +6,19 @@ import Profile from '../pages/profile';
 import { useState } from 'react';
 
 function Routes() {
-    const [currentUser, setcurrentUser] = useState({});
-
     return(
         <Switch>
             <Route exact path="/">
-                <Home/>
+                <Home />
             </Route>
             <Route path="/login">
-                <Login setcurrentUser={setcurrentUser} />
+                <Login />
             </Route>
             <Route path="/cadastro">
                 <Signup />
             </Route>
             <Route path="/profile/:id">
-                <Profile currentUser={currentUser} setcurrentUser={setcurrentUser} />
+                <Profile />
             </Route>
         </Switch>
     )

@@ -10,9 +10,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import { useEffect } from 'react';
 
-function Profile({ setCurrentUser, currentUser }) {
+function Profile() {
     const { id } = useParams();
     const history = useHistory();
+    const [dataUser, setDataUser] = useState({});
     const [viewModalAdd, setViewModalAdd] = useState(false);
     const [techs, setTechs] = useState([]);
 
@@ -80,11 +81,14 @@ function Profile({ setCurrentUser, currentUser }) {
         })
             .then(response => {
                 setTechs(response.data.techs);
+                setDataUser(response.data);
             })
             .catch(err => {
-                console.log(err);
+               // console.log(err);
             })
     }, [techs]);
+
+
 
     return (
         <Container>
@@ -123,8 +127,8 @@ function Profile({ setCurrentUser, currentUser }) {
 
             <Content>
                 <div className="HeaderProfile">
-                    <h3>Ayana Mello</h3>
-                    <span>Desenvolvedora FrontEnd</span>
+                    <h3>{ dataUser.name }</h3>
+                    <span>{dataUser.bio}</span>
                 </div>
 
                 <div className="Techs">
@@ -147,13 +151,8 @@ function Profile({ setCurrentUser, currentUser }) {
                                     <button className="BtnDelete" onClick={() => handleDeleteTech(tech.id)}><BsTrashFill /></button>
                                 </div>
                             </div>
-                        )
-
-                        }
-
-
+                        )}
                     </div>
-
                 </div>
             </Content>
         </Container>

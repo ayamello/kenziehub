@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
     background-color: var(--bluelight);
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 20px;
 
     .ModalAdd {
         width: 100vw;
@@ -195,7 +196,7 @@ export const Content = styled.div`
         }
     }
 
-    @media (min-width: 1024px) {
+    @media (min-width: 768px) {
         .HeaderProfile {
             h3 {
                 font-size: 30px;

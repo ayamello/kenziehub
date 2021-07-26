@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 
-function Login({ setcurrentUser }) {
+function Login() {
     const history = useHistory();
 
     const schema = yup.object().shape({
@@ -30,7 +30,7 @@ function Login({ setcurrentUser }) {
             const { id } = response.data.user;
             const { token } = response.data;
             localStorage.setItem("@Kenziehub:token", JSON.stringify(token));
-            setcurrentUser(response.data.user);
+            console.log(response);
             return history.push(`/profile/${id}`);
         })
         .catch(error => {
