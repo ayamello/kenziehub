@@ -1,10 +1,10 @@
 import { Container } from "./style";
+import Button from '../../components/Button';
 import { Link, useHistory } from 'react-router-dom';
 import LogoKH from '../../assets/logo.png';
 import ImgCover1 from '../../assets/home1.png';
 import ImgCover2 from '../../assets/home2.png';
 import { BsArrowRight } from "react-icons/bs";
-import Button from '../../components/button';
 
 function Home() {
     const history = useHistory();

@@ -1,5 +1,4 @@
 import { Container, Content } from './style';
-import { BsTrashFill } from 'react-icons/bs';
 import { AiOutlineLogout } from 'react-icons/ai';
 import { GrFormClose } from 'react-icons/gr';
 import { useHistory, useParams } from 'react-router-dom';
@@ -9,6 +8,7 @@ import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup';
 import api from '../../services/api';
 import { useEffect } from 'react';
+import CardTech from '../../components/CardTech';
 
 function Profile() {
     const { id } = useParams();
@@ -139,18 +139,11 @@ function Profile() {
 
                     <div className="ListTechs">
                         {techs.map(tech => 
-                            <div key={tech.id} className="CardTech">
-                                <div>
-                                    <h5>{tech.title}</h5>
-                                    <hr />
-                                    <p><span>Nível: </span>{tech.status}</p>
-                                </div>
-
-                                <div className="Btns">
-                                    <button className="BtnUpdate">Atualizar</button>
-                                    <button className="BtnDelete" onClick={() => handleDeleteTech(tech.id)}><BsTrashFill /></button>
-                                </div>
-                            </div>
+                            <CardTech tech={tech.title}
+                                      status={tech.status}
+                                      id={tech.id} 
+                                      eventDelete={handleDeleteTech}
+                            />
                         )}
                     </div>
                 </div>

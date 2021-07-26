@@ -1,5 +1,5 @@
 import { Container } from './style';
-import Button from '../../components/button';
+import Button from '../../components/Button';
 import { Link, useHistory } from 'react-router-dom';
 import LogoKH from '../../assets/logo.png';
 import ImgCover1 from '../../assets/login1.png';
@@ -118,7 +118,7 @@ function Signup() {
                                     <option value="q4">Q4</option>
                                 </select>
                             </div>
-
+                            
                             <div>
                                 <span>{errors.contact?.message}</span>
                                 <label htmlFor="contact">LinkedIn</label>
