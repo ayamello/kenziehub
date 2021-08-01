@@ -2,7 +2,7 @@
 Portfólio de alunos da Kenzie Academy Brasil. 
 
 ### Objetivo
-Praticar requisições e resposta com axios e tudo mais aprendido até agora. 
+Praticar todo o aprendizado de React que eu obtive até agora, desde os seus fundamentos até a integração com o back.
 
 ### Deploy
 https://kenziehub.vercel.app/
